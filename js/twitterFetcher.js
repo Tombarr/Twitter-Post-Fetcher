@@ -221,7 +221,9 @@
 
       function swapDataSrc(element) {
         var avatarImg = element.getElementsByTagName('img')[0];
-        avatarImg.src = avatarImg.getAttribute('data-src-2x');
+        if (avatarImg) {
+          avatarImg.src = avatarImg.getAttribute('data-src-2x');
+        }
         return element;
       }
 
@@ -303,11 +305,11 @@
             tweet: tweets[n].innerHTML,
             author: authors[n] ? authors[n].innerHTML : 'Unknown Author',
             author_data: {
-              profile_url: authors[n] ? authors[n].querySelector('[data-scribe="element:user_link"]').href : null,
-              profile_image: authors[n] ? authors[n].querySelector('[data-scribe="element:avatar"]').getAttribute('data-src-1x') : null,
-              profile_image_2x: authors[n] ? authors[n].querySelector('[data-scribe="element:avatar"]').getAttribute('data-src-2x') : null,
-              screen_name: authors[n] ? authors[n].querySelector('[data-scribe="element:screen_name"]').title : null,
-              name: authors[n] ? authors[n].querySelector('[data-scribe="element:name"]').title : null
+              profile_url: authors[n] ? ((authors[n].querySelector('[data-scribe="element:user_link"]')) ? authors[n].querySelector('[data-scribe="element:user_link"]').href : null) : null,
+              profile_image: authors[n] ? ((authors[n].querySelector('[data-scribe="element:avatar"]')) ? authors[n].querySelector('[data-scribe="element:avatar"]').getAttribute('data-src-1x') : null) : null,
+              profile_image_2x: authors[n] ? ((authors[n].querySelector('[data-scribe="element:avatar"]')) ? authors[n].querySelector('[data-scribe="element:avatar"]').getAttribute('data-src-2x') : null) : null,
+              screen_name: authors[n] ? ((authors[n].querySelector('[data-scribe="element:screen_name"]')) ? authors[n].querySelector('[data-scribe="element:screen_name"]').title : null) : null,
+              name: authors[n] ? ((authors[n].querySelector('[data-scribe="element:name"]')) ? authors[n].querySelector('[data-scribe="element:name"]').title : null) : null
             },
             time: times[n].textContent,
             timestamp: times[n].getAttribute('datetime').replace('+0000', 'Z').replace(/([\+\-])(\d\d)(\d\d)/, '$1$2:$3'),
